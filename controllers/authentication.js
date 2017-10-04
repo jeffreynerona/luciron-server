@@ -1,11 +1,14 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 const crypto = require('crypto');
 const setUserInfo = require('../helpers').setUserInfo;
+const getRole = require('../helpers').getRole;
+const config = require('../config/main');
 
 function generateToken(user) {
   return jwt.sign(user, config.secret, {
     expiresIn: 604800 // in seconds
-  });
+  }); 
 }
 
 exports.login = function (req, res, next) {
@@ -70,4 +73,25 @@ exports.register = function (req, res, next) {
       });
     });
   });
+};
+
+// Role authorization check
+exports.roleAuthorization = function (requiredRole) {
+  return function (req, res, next) {
+    const user = req.user;
+
+    User.findById(user._id, (err, foundUser) => {
+      if (err) {
+        res.status(422).json({ error: 'No user was found.' });
+        return next(err);
+      }
+
+      // If user is found, check role.
+      if (getRole(foundUser.role) >= getRole(requiredRole)) {
+        return next();
+      }
+
+      return res.status(401).json({ error: 'You are not authorized to view this content.' });
+    });
+  };
 };

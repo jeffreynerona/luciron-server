@@ -6,7 +6,7 @@ const express = require('express'),
   mongoose = require('mongoose'),
   config = require('./config/main');
 
-// Database Setu
+// Database Setup
 mongoose.connect(config.database);
 
 // Start the server
