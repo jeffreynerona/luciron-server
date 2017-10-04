@@ -1,7 +1,7 @@
 {
   "name": "luciron-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Luciron API server",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +9,17 @@
   "author": "Jeffrey Nerona",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
+    "crypto": "^1.0.1",
+    "ejs": "^2.5.7",
     "express": "^4.16.1",
-    "mongoose": "^4.12.0"
+    "express-redirect": "^1.2.2",
+    "jsonwebtoken": "^8.0.1",
+    "mongoose": "^4.12.0",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0",
+    "passport-local": "^1.0.0"
   }
 }
