@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Luciron API server",
   "main": "server.js",
+  "repository": "git@github.com:jeffreynerona/luciron-server.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
